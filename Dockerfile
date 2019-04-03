@@ -1,8 +1,8 @@
-FROM golang:latest
-WORKDIR /go/src/github.com/mchmarny/simple-app/
+FROM docker.wzh/library/golang:latest
+WORKDIR /go/src/github.com/wzhdev/simple-app/
 COPY . .
 RUN CGO_ENABLED=0 go build -v -o app
 
 FROM scratch
-COPY --from=0 /go/src/github.com/mchmarny/simple-app/app .
+COPY --from=0 /go/src/github.com/wzhdev/simple-app/app .
 ENTRYPOINT ["/app"]
